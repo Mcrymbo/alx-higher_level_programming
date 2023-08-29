@@ -3,8 +3,8 @@
 
 
 class Square:
-    """ Class Square that determines the square of by size
-    """
+    """ Class Square that determines the square of by size"""
+
     def __init__(self, size=0):
         """ Init method that initializes square object
         """
