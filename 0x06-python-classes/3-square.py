@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+""" Class for implimenting area of a square """
+
+
 class Square:
     """Class Square determines the square of based on size
     """
