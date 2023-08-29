@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+""" Class with size validation """
+
+
 class Square:
     """ Squre class that defines a square by its size
     """
