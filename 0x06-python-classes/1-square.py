@@ -1,4 +1,7 @@
-#!/usr/bin/python3
+#!/usr/bin/pythoni3
+""" Class for implementing Square as object"""
+
+
 class Square:
     """Class Sqare - defines square object
     It takes ths size of the square.
@@ -6,6 +9,7 @@ class Square:
     We initialize the size using __init__ method
 
     """
+
     def __init__(self, size):
         """Initializes size of square
         We use init method to initialize it
