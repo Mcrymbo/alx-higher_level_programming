@@ -13,13 +13,8 @@ class Square:
         elif size < 0:
             raise ValueError("size must be >= 0")
         else:
-            self.__size = size
-            self.__position = position
-
-    def area(self):
-        """class method that returns square of the object
-        """
-        return (self.i__size ** 2)
+            self.size = size
+            self.position = position
 
     @property
     def size(self):
@@ -57,6 +52,10 @@ class Square:
         if value[0] < 0 or value[1] < 0:
             raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = value
+
+    def area(self):
+        """ Method for calculating area of square"""
+        return (self.__size ** 2)
 
     def my_print(self):
         """ Method to print square according to value of size
