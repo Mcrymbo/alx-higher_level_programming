@@ -61,7 +61,7 @@ class Square:
     def my_print(self):
         """ Method to print square according to value of size
         """
-        if not self.__size:
+        if self.__size == 0:
             print()
         else:
             for i in range(self.position[1]):
