@@ -19,7 +19,17 @@ class Rectangle:
 
     @width.setter
     def width(self, value):
-        """ sets the value of width """
+        """
+        sets the value of width
+
+        Args:
+            value: width
+
+        Raises:
+            ValueError: if < 0
+            TypeError: if not integer
+
+        """
 
         if not isinstance(value, int):
             raise TypeError("width must be and integer\n")
