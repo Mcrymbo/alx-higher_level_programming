@@ -4,11 +4,14 @@
 
 class Rectangle:
 
+    number_of_instances = 0
+
     def __init__(self, width=0, height=0):
         """ initializes with and height """
 
         self.height = height
         self.width = width
+        type(self).number_of_instances += 1
 
     def area(self):
         """ calculates area of a rectangle """
@@ -16,7 +19,7 @@ class Rectangle:
         return self.height * self.width
 
     def perimeter(self):
-        """ calculates iperimeter of a rectangle """
+        """ calculates perimeter of a rectangle """
 
         if self.width == 0 or self.height == 0:
             return 0
@@ -68,3 +71,14 @@ class Rectangle:
         for i in range(self.height):
             rect += ("#" * self.width) + "\n"
         return rect[:-1]
+
+    def __repr__(self):
+        """ returns string representation of instance """
+
+        return ("Rectangle({:d}, {:d})".format(self.width, self.height))
+
+    def __del__(self):
+        """ deletes an instance of the class rectangle """
+
+        print("Bye rectangle...")
+        type(self).number_of_instances -= 1
