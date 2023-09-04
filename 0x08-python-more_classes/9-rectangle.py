@@ -3,7 +3,7 @@
 
 
 class Rectangle:
-    """ define class Rectangle """
+    """ defines class rectangle """
 
     number_of_instances = 0
     print_symbol = "#"
@@ -101,6 +101,6 @@ class Rectangle:
 
     @classmethod
     def square(cls, size=0):
-        """ returns a new instance of the class Rectangle """
+        """ instantiate a new Rectangle instance """
 
-        return (cls(size, size))
+        return cls(size, size)
