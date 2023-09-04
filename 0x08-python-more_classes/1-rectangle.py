@@ -3,7 +3,7 @@
 
 
 class Rectangle:
-    """ defines a Rectangle class """
+    """ defines class Rectangle """
 
     def __init__(self, width=0, height=0):
         """ initializes with and height """
@@ -19,25 +19,14 @@ class Rectangle:
 
     @width.setter
     def width(self, value):
-        """
-        sets the value of width
-
-        Args:
-            value: width
-
-        Raises:
-            ValueError: if < 0
-            TypeError: if not integer
-
-        """
+        """ sets the value of width """
 
         if not isinstance(value, int):
-            raise TypeError("width must be and integer")
+            raise TypeError("width must be and integer\n")
         elif (value < 0):
-            raise ValueError("width must be >=0")
+            raise ValueError("width must be >=0\n")
         else:
             self.__width = value
-
         return self.__width
 
     @property
@@ -51,9 +40,9 @@ class Rectangle:
         """ sets the value of height """
 
         if not isinstance(value, int):
-            raise TypeError("height must be an integer")
+            raise TypeError("height must be an integer\n")
         elif (value < 0):
-            raise ValueError("height must be >= 0")
+            raise ValueError("height must be >= 0\n")
         else:
             self.__height = value
         return self.__height
