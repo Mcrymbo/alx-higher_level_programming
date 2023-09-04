@@ -8,8 +8,19 @@ class Rectangle:
     def __init__(self, width=0, height=0):
         """ initializes with and height """
 
-        self.height = height
-        self.width = width
+        if not isinstance(width, int):
+            raise TypeError("width must be and integer\n")
+        elif (width < 0):
+            raise ValueError("width must be >=0\n")
+        else:
+            self.width = width
+
+        if not isinstance(height, int):
+            raise TypeError("height must be and integer\n")
+        elif (height < 0):
+            raise ValueError("height must be >=0\n")
+        else:
+            self.height = height
 
     @property
     def width(self):
