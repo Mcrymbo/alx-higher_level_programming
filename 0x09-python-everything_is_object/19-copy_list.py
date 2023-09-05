@@ -4,4 +4,5 @@
 
 def copy_list(l):
     """ returns a copy of a list """
-    return l[:]
+
+    return l.copy()
