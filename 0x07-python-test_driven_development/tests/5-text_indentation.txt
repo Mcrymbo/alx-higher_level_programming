@@ -1,0 +1,58 @@
+================================================================
+``text_indentation`` Function from ``5-text_indentation`` module
+=================================================================
+
+Importing the function from the module:
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Printing large message
+    >>> text_indentation("Et facere alias ut consectetur dolores ea nostrum provident sit dolor minima qui voluptatum dicta in enim harum? Eos nesciunt iusto est alias molestias qui internos ullam. Ea sapiente galisum aut praesentium totam ex quaerat quisquam? At consectetur neque qui enim impedit et ratione galisum?")
+    Et facere alias ut consectetur dolores ea nostrum provident sit dolor minima qui voluptatum dicta in enim harum?
+    <BLANKLINE>
+    Eos nesciunt iusto est al    ias molestias qui internos ullam.
+    <BLANKLINE>
+    Ea sapiente galisum aut praesentium totam ex quaerat quisquam?
+    <BLANKLINE>
+    At consectetur neque qui enim impedit et ratione galisum?
+    <BLANKLINE>
+
+Printing special characters
+    >>> text_indentation(".?:")
+    .
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+
+Printing a word with spaces around and special character
+    >>> text_indentation(" Hello    .")
+    Hello.
+    <BLANKLINE>
+
+printing text with special character
+    >>> text_indentation("Hello: World? Hope you are cool. aren't you? ")
+    Hello:
+    <BLANKLINE>
+    World?
+    <BLANKLINE>
+    Hope you are cool.
+    <BLANKLINE>
+    aren't you?
+    <BLANKLINE>
+
+Printing character number
+    >>> text_indentation("123")
+    123
+
+printing number as text
+    >>> text_indentation(123)
+    Traceback (most recent call last):
+    	      ...
+    TypeError: text must be a string
+
+Passing None as text
+    >>> text_indentation(None)
+    Traceback (most recent call last):
+    	      ...
+    TypeError: text must be a string
