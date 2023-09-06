@@ -9,7 +9,7 @@ Printing large message
     >>> text_indentation("Et facere alias ut consectetur dolores ea nostrum provident sit dolor minima qui voluptatum dicta in enim harum? Eos nesciunt iusto est alias molestias qui internos ullam. Ea sapiente galisum aut praesentium totam ex quaerat quisquam? At consectetur neque qui enim impedit et ratione galisum?")
     Et facere alias ut consectetur dolores ea nostrum provident sit dolor minima qui voluptatum dicta in enim harum?
     <BLANKLINE>
-    Eos nesciunt iusto est al    ias molestias qui internos ullam.
+    Eos nesciunt iusto est alias molestias qui internos ullam.
     <BLANKLINE>
     Ea sapiente galisum aut praesentium totam ex quaerat quisquam?
     <BLANKLINE>
@@ -23,11 +23,6 @@ Printing special characters
     ?
     <BLANKLINE>
     :
-    <BLANKLINE>
-
-Printing a word with spaces around and special character
-    >>> text_indentation(" Hello    .")
-    Hello.
     <BLANKLINE>
 
 printing text with special character

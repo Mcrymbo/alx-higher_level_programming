@@ -1,0 +1,63 @@
+========================================================
+``matrix_mu`` function from ``100-matrix_mul`` module
+========================================================
+
+Importing function from the module:
+    >>> matrix_mul = __import__('100-matrix_mul').matrix_mul
+
+multiplying 2x2 by 2x2 matrices
+    >>> matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
+    [[7, 10], [15, 22]]
+
+multiplying 3x3 by 3x3 matrices
+    >>> l1 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    >>> l2 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    >>> matrix_mul(l1, l2)
+    [[30, 36, 42], [66, 81, 96], [102, 126, 150]]
+
+multiplying 1x4 by 4x1 matrix
+    >>> matrix_mul([[1, 2, 3]], [[1], [2], [3]])
+    [[14]]
+
+passing tuple as matrix
+    >>> matrix_mul((1, 2, 3), [[1], [2], [3]])
+    Traceback (most recent call last):
+    	      ...
+    TypeError: m_a must be a list
+
+passing empty matrices
+    >>> matrix_mul([], [[1]])
+    Traceback (most recent call last):
+    	      ...
+    ValueError: m_a can't be empty
+
+passing matrix with string
+    >>> matrix_mul([['1', '2']], [[3], [4]])
+    Traceback (most recent call last):
+    	      ...
+    TypeError: m_a should contain only integers or floats
+
+passing matrix whose rows have different sizes
+    >>> matrix_mul([[1, 2, 3], [2, 2, 3]], [[3, 4], [1]])
+    Traceback (most recent call last):
+    	      ...
+    TypeError: each row of m_b must be of the same size
+
+Missing arguments
+    >>> matrix_mul()
+    Traceback (most recent call last):
+    	      ...
+    TypeError: matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
+
+matrices that cannot be multiplied
+    >>> matrix_mul([[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[1, 2], [3, 4]])
+    Traceback (most recent call last):
+    	      ...
+    ValueError: m_a and m_b can't be multiplied
+
+Passing None as argument
+    >>> matrix_mul(None, None)
+    Traceback (most recent call last):
+    	      ...
+    TypeError: m_a must be a list
+
