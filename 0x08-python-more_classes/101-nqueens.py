@@ -37,7 +37,7 @@ def backtrack_algorithm(position, N):
         print_position(position, N)
         return
     position[N] = -1
-    while((position[N] < len(position) - 1)):
+    while ((position[N] < len(position) - 1)):
         position[N] += 1
         if is_safe(position, N) is True:
             if N is not len(position):
@@ -56,7 +56,7 @@ if __name__ == '__main__':
     import sys
 
     if len(sys.argv) == 1 or len(sys.argv) > 2:
-        print("USAGE: nqueens N")
+        print("Usage: nqueens N")
         sys.exit(1)
     try:
         size = int(sys.argv[1])
