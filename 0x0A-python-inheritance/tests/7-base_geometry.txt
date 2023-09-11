@@ -1,0 +1,39 @@
+==========================================================
+``BaseGeometry`` class from ``7-base_geometry`` module``
+==========================================================
+
+Importing the class from the module:
+    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+Passing integer as value
+    >>> geo = BaseGeometry()
+    >>> geo.integer_validator("name", 1)
+    
+
+passing no agument to the validator
+    >>> geo = BaseGeometry()
+    >>> geo.integer_validator()
+    Traceback (most recent call last):
+    	      ...
+    TypeError: integer_validator() takes exactly 3 arguments (1 given)
+
+Trying printing area
+    >>> geo = BaseGeometry()
+    >>> geo.area()
+    Traceback (most recent call last):
+    	      ...
+    Exception: area() is not implemented
+
+Passing string value
+    >>> geo = BaseGeometry()
+    >>> geo.integer_validator("name", "valu")
+    Traceback (most recent call last):
+    	      ...
+    TypeError: name must be an integer
+
+Passing non to validator method
+    >>> geo = BaseGeometry()
+    >>> geo.integer_validator("name", None)
+    Traceback (most recent call last):
+              ...
+    TypeError: name must be an integer
