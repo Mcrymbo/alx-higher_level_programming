@@ -15,7 +15,7 @@ passing no agument to the validator
     >>> geo.integer_validator()
     Traceback (most recent call last):
     	      ...
-    TypeError: integer_validator() takes exactly 3 arguments (1 given)
+    TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
 
 Trying printing area
     >>> geo = BaseGeometry()
@@ -24,9 +24,58 @@ Trying printing area
     	      ...
     Exception: area() is not implemented
 
+passing 1 oargument to area method
+    >>> geo = BaseGeometry()
+    >>> geo.area(1)
+    Traceback (most recent call last):
+    	      ...
+    TypeError: area() takes 1 positional argument but 2 were given
+
+passing 2 arguments to area method
+    >>> geo = BaseGeometry()
+    >>> geo.area(2, 3)
+    Traceback (most recent call last):
+    	      ...
+    TypeError: area() takes 1 positional argument but 3 were given
+
+Passing a boolean value
+    >>> geo = BaseGeometry()
+    >>> geo.integer_validator("name", False)
+    Traceback (most recent call last):
+    	      ...
+    TypeError: name must be an integer
+
+Passing negative value
+    >>> geo = BaseGeometry()
+    >>> geo.integer_validator("name", -10)
+    Traceback (most recent call last):
+    	      ...
+    ValueError: name must be greater than 0
+
+Passing only name and no value
+    >>> geo = BaseGeometry()
+    >>> geo.integer_validator("name")
+    Traceback (most recent call last):
+    	      ...
+    TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+passing 3 arguments
+    >>> geo = BaseGeometry()
+    >>> geo.integer_validator("name", 3, 4)
+    Traceback (most recent call last):
+    	      ...
+    TypeError: integer_validator() takes 3 positional arguments but 4 were given
+
 Passing string value
     >>> geo = BaseGeometry()
-    >>> geo.integer_validator("name", "valu")
+    >>> geo.integer_validator("name", "3")
+    Traceback (most recent call last):
+    	      ...
+    TypeError: name must be an integer
+
+passing a tuple to integer_validator method
+    >>> geo = BaseGeometry()
+    >>> geo.integer_validator("name", (3,))
     Traceback (most recent call last):
     	      ...
     TypeError: name must be an integer
