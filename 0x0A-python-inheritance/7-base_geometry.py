@@ -15,8 +15,7 @@ class BaseGeometry:
 
     def integer_validator(self, name, value):
         """ validates the value
-            
-            Args:
+        Args:
                 name: object name(str)
                 value: property value(int)
         """
