@@ -4,6 +4,7 @@ module that handles JSON representation of an object
 """
 import json
 
+
 def to_json_string(my_obj):
     """
     Function that serializes a python object
