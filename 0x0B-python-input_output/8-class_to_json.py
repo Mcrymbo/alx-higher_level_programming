@@ -7,7 +7,7 @@ Module that rturns dictionary description
 def class_to_json(obj):
     """
     a function that returns dictionary description
-    
+
     Args:
         obj: instance of a class
     """
