@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ test module for Base class """
-import unttest
+import unittest
 from models.base import Base
 from models.square import Square
 from models.rectangle import Rectangle
@@ -69,7 +69,7 @@ class TestMaseMethods(unittest.TestCase):
         """ try access private attribute """
         base = Base()
         with self.assertRaises(AttributeError):
-            base__nb_objects
+            base.__nb_objects
 
     def test_save_to_file_1(self):
         """ test JSON file """
@@ -82,7 +82,7 @@ class TestMaseMethods(unittest.TestCase):
 
         try:
             os.remove("Square.json")
-        except:
+        except Exception:
             pass
         Square.save_to_file([])
         with open("Square.json", "r") as f:
@@ -93,13 +93,13 @@ class TestMaseMethods(unittest.TestCase):
         Rectangle.save_to_file(None)
         result = "[]\n"
         with open("Rectangle.json", "r") as f:
-            with patch("sys.stdout", new=stringIO()) as str_out:
+            with patch("sys.stdout", new=StringIO()) as str_out:
                 print(f.read())
                 self.assertEqual(str_out.getvalue(), result)
 
         try:
             os.remove("Rectangle.json")
-        except:
+        except Exception:
             pass
         Rectangle.save_to_file([])
         with open("Rectangle.json", "r") as f:

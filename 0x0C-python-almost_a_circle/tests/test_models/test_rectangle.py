@@ -56,7 +56,7 @@ class TestRectangleMethod(unittest.TestCase):
         """test if no argument is passed to Rectangle """
         with self.assertRaises(TypeError):
             rect = Rectangle()
-    
+
     def test_access_width(self):
         rect = Rectangle(1, 1)
         with self.assertRaises(AttributeError):
@@ -96,7 +96,7 @@ class TestRectangleMethod(unittest.TestCase):
         """ pass y as string """
 
         with self.assertRaises(TypeError):
-            rect = Rectangle(1, 1, 1, 1, 1)
+            rect = Rectangle(1, 1, 1, "1", 1)
 
     def test_val_1(self):
         """ pass invalid value for width """
@@ -117,8 +117,10 @@ class TestRectangleMethod(unittest.TestCase):
         """ pass invalid y value """
         with self.assertRaises(ValueError):
             rect = Rectangle(1, 1, 1, -2)
+
     def test_area_1(self):
         """ test return value of area method """
+
         rect = Rectangle(2, 5)
         self.assertEqual(rect.area(), 10)
         rect = Rectangle(3, 6)
@@ -153,7 +155,7 @@ class TestRectangleMethod(unittest.TestCase):
         """ tests return value of __str__ """
 
         rect = Rectangle(4, 6, 3, 2)
-        result = "[Rectangle] (1) 2/4 - 4/6\n"
+        result = "[Rectangle] (1) 3/2 - 4/6\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(rect)
             self.assertEqual(str_out.getvalue(), result)
@@ -173,13 +175,13 @@ class TestRectangleMethod(unittest.TestCase):
             self.assertEqual(str_out.getvalue(), result)
 
         rect = Rectangle(5, 8)
-        result = "[Rectangle] (1) 0/0 - 5/8\n"
-        with patch('sys.stdout', new=StringIO()), as str_out:
+        result = "[Rectangle] (2) 0/0 - 5/8\n"
+        with patch('sys.stdout', new=StringIO()) as str_out:
             print(rect)
             self.assertEqual(str_out.getvalue(), result)
 
         rect = Rectangle(4, 4)
-        result = "[Rectangle] (1) 0/0 - 4/4"
+        result = "[Rectangle] (3) 0/0 - 4/4"
         self.assertEqual(rect.__str__(), result)
 
     def test_to_dictionary(self):
@@ -205,7 +207,7 @@ class TestRectangleMethod(unittest.TestCase):
         """ used to test create method """
 
         dictionary = {'id': 98}
-        rect = rectangle.create(**dictionary)
+        rect = Rectangle.create(**dictionary)
         self.assertEqual(rect.id, 98)
 
         dictionary = {'id': 98, 'width': 2}
@@ -219,14 +221,14 @@ class TestRectangleMethod(unittest.TestCase):
         self.assertEqual(rect.width, 2)
         self.assertEqual(rect.height, 3)
 
-        dictionary = {'id':98, 'width': 2, 'height': 3, 'x': 0}
+        dictionary = {'id': 98, 'width': 2, 'height': 3, 'x': 0}
         rect = Rectangle.create(**dictionary)
         self.assertEqual(rect.id, 98)
         self.assertEqual(rect.width, 2)
         self.assertEqual(rect.height, 3)
         self.assertEqual(rect.x, 0)
 
-        dictionary = {'id':98, 'width': 2, 'height': 3, 'x': 0, 'y': 2}
+        dictionary = {'id': 98, 'width': 2, 'height': 3, 'x': 0, 'y': 2}
         rect = Rectangle.create(**dictionary)
         self.assertEqual(rect.id, 98)
         self.assertEqual(rect.width, 2)
@@ -251,4 +253,3 @@ class TestRectangleMethod(unittest.TestCase):
         list_out = Rectangle.load_from_file()
         for i in range(len(list_rect)):
             self.assertEqual(list_rect[i].__str__(), list_out[i].__str__())
-

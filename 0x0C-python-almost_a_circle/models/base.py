@@ -11,6 +11,7 @@ class Base:
     """ base for other class files"""
 
     __nb_objects = 0
+
     def __init__(self, id=None):
         if id is not None:
             self.id = id
@@ -26,20 +27,27 @@ class Base:
             return "[]"
         else:
             return json.dumps(list_dictionaries)
+
     @classmethod
     def save_to_file(cls, list_objs):
         """
         class method that saves JSON file to a file
         """
 
-        if list_objs is None:
-            list_objs = []
-        
-        json_file = "{}.json".format(cls.__name__)
 
-        with open(json_file, 'w', encoding='utf-8') as f:
-            json_str = cls.to_json_string([obj.to_dictionary() for obj in list_objs])
-            f.write(json_str)
+        filename = "{}.json".format(cls.__name__)
+
+        list_dict = []
+
+        if not list_objs:
+            pass
+        else:
+            for i in range(len(list_objs)):
+                list_dict.append(list_objs[i].to_dictionary())
+        lst = cls.to_json_string(list_dict)
+        
+        with open(filename, mode='w', encoding='utf-8') as f:
+            f.write(lst)
 
     @staticmethod
     def from_json_string(json_string):
@@ -89,7 +97,7 @@ class Base:
             json_string = f.read()
         list_attr = cls.from_json_string(json_string)
         list_inst = [cls.create(**items) for items in list_attr]
-        
+
         return list_inst
 
     @classmethod

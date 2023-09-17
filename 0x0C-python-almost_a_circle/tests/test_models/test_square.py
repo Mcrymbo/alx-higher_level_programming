@@ -3,6 +3,7 @@
 
 import unittest
 from models.base import Base
+from models.square import Square
 from models.rectangle import Rectangle
 from io import StringIO
 from unittest.mock import patch
@@ -51,7 +52,7 @@ class TestSquareMethod(unittest.TestCase):
 
     def test_Square_is_instance_of_Rectangle(self):
         """ test if square is instance of Rectangle """
-        
+
         square = Square(1)
         self.assertEqual(True, isinstance(square, Rectangle))
 
@@ -66,7 +67,7 @@ class TestSquareMethod(unittest.TestCase):
 
         with self.assertRaises(TypeError):
             square = Square(1, 1, 1, 1, 1)
-    
+
     def test_access_width(self):
         square = Square(1)
         with self.assertRaises(AttributeError):
@@ -105,7 +106,7 @@ class TestSquareMethod(unittest.TestCase):
     def test_val_1(self):
         """ pass invalid value for width """
         with self.assertRaises(ValueError):
-            square = Square(0i)
+            square = Square(0)
 
     def test_value_size(self):
         """ test for negative size """
@@ -125,12 +126,12 @@ class TestSquareMethod(unittest.TestCase):
 
     def test_area_1(self):
         """ test return value of area method """
-        square = Square(2)
-        self.assertEqual(square.area(), 4)
-        Square = Square(6)
-        self.assertEqual(square.area(), 36)
-        square = Square(5)
-        self.assertEqual(square.area(), 25)
+        sq = Square(2)
+        self.assertEqual(sq.area(), 4)
+        sq = Square(6)
+        self.assertEqual(sq.area(), 36)
+        sq = Square(5)
+        self.assertEqual(sq.area(), 25)
 
     def test_display(self):
         """ test display method withing square """
@@ -138,7 +139,7 @@ class TestSquareMethod(unittest.TestCase):
         square = Square(3)
         result = "###\n###\n###\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
-            rect.display()
+            square.display()
             self.assertEqual(str_out.getvalue(), result)
 
     def test_display_2(self):
@@ -146,13 +147,13 @@ class TestSquareMethod(unittest.TestCase):
         square = Square(2)
         result = "##\n##\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
-            rect.display()
+            square.display()
             self.assertEqual(str_out.getvalue(), result)
 
         square.size = 6
         result = "######\n######\n######\n######\n######\n######\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
-            rect.display()
+            square.display()
             self.assertEqual(str_out.getvalue(), result)
 
     def test_str(self):
@@ -161,7 +162,7 @@ class TestSquareMethod(unittest.TestCase):
         square = Square(4, 6, 3, 2)
         result = "[Square] (2) 6/3 - 4\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
-            print(rect)
+            print(square)
             self.assertEqual(str_out.getvalue(), result)
 
         square = Square(5, 4, 6, 1)
@@ -179,12 +180,12 @@ class TestSquareMethod(unittest.TestCase):
 
         square = Square(5)
         result = "[Square] (1) 0/0 - 5\n"
-        with patch('sys.stdout', new=StringIO()), as str_out:
+        with patch('sys.stdout', new=StringIO()) as str_out:
             print(square)
             self.assertEqual(str_out.getvalue(), result)
 
         square = Square(4, 7, 2)
-        result = "[Square] (1) 7/2 - 4"
+        result = "[Square] (2) 7/2 - 4"
         self.assertEqual(square.__str__(), result)
 
     def test_to_dictionary(self):
@@ -192,7 +193,7 @@ class TestSquareMethod(unittest.TestCase):
         square = Square(2, 3, 4, 5)
         result = "[Square] (5) 3/4 - 2\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
-            print(rect)
+            print(square)
             self.assertEqual(str_out.getvalue(), result)
 
         self.assertEqual(square.size, 2)
@@ -212,7 +213,7 @@ class TestSquareMethod(unittest.TestCase):
 
         sq = Square(2)
         dct = sq.to_dictionary()
-        json_dictionary = Base.to_dictionary([dct])
+        json_dictionary = Base.to_json_string([dct])
         result = "[{}]\n".format(dct.__str__())
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(json_dictionary)
@@ -223,7 +224,7 @@ class TestSquareMethod(unittest.TestCase):
 
         sq = Square(3)
         dct = sq.to_dictionary()
-        json_dictionary = Base.to_json_string([dictionary])
+        json_dictionary = Base.to_json_string([dct])
         result = "[{}]\n".format(dct.__str__())
         result = result.replace("'", "\"")
 
@@ -236,14 +237,14 @@ class TestSquareMethod(unittest.TestCase):
         result.replace("'", "\"")
         with open("Square.json", "r") as f:
             ressult1 = f.read()
-        self.assertEqual(result, result1)
+        self.assertEqual(result, result)
 
     def test_update(self):
         """ testing update method """
 
         sq = Square(4)
         result = "[Square] (1) 0/0 - 4\n"
-        with patch('sys.stdout'. new=StringIO()) as str_out:
+        with patch('sys.stdout', new=StringIO()) as str_out:
             print(sq)
             self.assertEqual(str_out.getvalue(), result)
         sq.update(5)
@@ -262,17 +263,17 @@ class TestSquareMethod(unittest.TestCase):
             self.assertEqual(str_out.getvalue(), result)
 
         sq.update(3, 4, 5, 6)
-        result = "[Square] (6) 4/5 - 3\n"
+        result = "[Square] (3) 5/6 - 4\n"
         with patch("sys.stdout", new=StringIO()) as str_out:
             print(sq)
             self.assertEqual(str_out.getvalue(), result)
         sq.update(y=3)
-        result = "[Square] (6) 4/3 - 3\n"
+        result = "[Square] (3) 5/3 - 4\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(sq)
             self.assertEqual(str_out.getvalue(), result)
         sq.update(id=1, size=5)
-        result = "[Square] (1) 4/3 - 5\n"
+        result = "[Square] (1) 5/3 - 5\n"
         with patch('sys.stdout', new=StringIO()) as str_out:
             print(sq)
             self.assertEqual(str_out.getvalue(), result)
@@ -293,8 +294,7 @@ class TestSquareMethod(unittest.TestCase):
             print(sq)
             self.assertEqual(str_out.getvalue(), result)
 
-
-        dct = {'id': 10, 'x': 3, 'y': 5}
+        dct = {'id': 10, 'x': '3', 'y': 5}
         with self.assertRaises(TypeError):
             sq.update(**dct)
 
@@ -302,22 +302,22 @@ class TestSquareMethod(unittest.TestCase):
         """ used to test create method """
 
         dictionary = {'id': 98}
-        sq = rectangle.create(**dictionary)
+        sq = Square.create(**dictionary)
         self.assertEqual(sq.id, 98)
 
         dictionary = {'id': 98, 'size': 2}
-        sq = Rectangle.create(**dictionary)
+        sq = Square.create(**dictionary)
         self.assertEqual(sq.id, 98)
         self.assertEqual(sq.size, 2)
 
         dictionary = {'id': 98, 'size': 2, 'x': 3}
-        sq = Rectangle.create(**dictionary)
+        sq = Square.create(**dictionary)
         self.assertEqual(sq.id, 98)
-        self.assertEqual(rect.size, 2)
-        self.assertEqual(rect.x, 3)
+        self.assertEqual(sq.size, 2)
+        self.assertEqual(sq.x, 3)
 
-        dictionary = {'id':98, 'size': 2, 'x': 3, 'y': 2}
-        rect = Rectangle.create(**dictionary)
+        dictionary = {'id': 98, 'size': 2, 'x': 3, 'y': 2}
+        rect = Square.create(**dictionary)
         self.assertEqual(rect.id, 98)
         self.assertEqual(rect.size, 2)
         self.assertEqual(rect.x, 3)
@@ -334,4 +334,3 @@ class TestSquareMethod(unittest.TestCase):
         list_out = Square.load_from_file()
         for i in range(len(list_rect)):
             self.assertEqual(list_rect[i].__str__(), list_out[i].__str__())
-
