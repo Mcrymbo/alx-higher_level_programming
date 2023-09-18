@@ -34,7 +34,6 @@ class Base:
         class method that saves JSON file to a file
         """
 
-
         filename = "{}.json".format(cls.__name__)
 
         list_dict = []
@@ -45,7 +44,7 @@ class Base:
             for i in range(len(list_objs)):
                 list_dict.append(list_objs[i].to_dictionary())
         lst = cls.to_json_string(list_dict)
-        
+
         with open(filename, mode='w', encoding='utf-8') as f:
             f.write(lst)
 
