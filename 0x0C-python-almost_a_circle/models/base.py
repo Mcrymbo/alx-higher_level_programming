@@ -5,6 +5,7 @@ base file for all other classes of this project
 import json
 import os
 import csv
+import turtle
 
 
 class Base:
@@ -153,3 +154,42 @@ class Base:
             instance_list.append(cls.create(**mat[i]))
 
         return instance_list
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """
+        Draws rectangle and square using turtle package
+        """
+
+        dra = turtle.Turtle()
+        dra.screen.bgcolor("#b7312")
+        dra.pensize(4)
+        dra.shape("turtle")
+
+        dra.color("ffffff")
+        for rect in list_rectangles:
+            dra.showturtle()
+            dra.up()
+            dra.goto(rect.x, rect.y)
+            dra.down()
+            for i in range(2):
+                dra.forward(rect.width)
+                dra.left(90)
+                dra.forward(rect.height)
+                dra.left(90)
+            dra.hideturtle()
+
+        dra.color("ffffff")
+        for sq in list_squares:
+            dra.showturtle()
+            dra.up()
+            dra.goto(sq.x, sq.y)
+            dra.down()
+            for i in range(2):
+                dra.forward(sq.width)
+                dra.left(90)
+                dra.forward(sq.height)
+                dra.left(90)
+            dra.hideturtle()
+
+        dra.exitonclick()

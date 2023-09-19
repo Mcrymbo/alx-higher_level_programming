@@ -113,6 +113,16 @@ class TestRectangleMethod(unittest.TestCase):
         with self.assertRaises(ValueError):
             rect = Rectangle(1, 1, -2)
 
+    def test_value_4(self):
+        """ width passed as negative """
+        with self.assertRaises(ValueError):
+            rect = Rectangle(-1, 3)
+
+    def test_value_5(self):
+        """ width passed as negative """
+        with self.assertRaises(ValueError):
+            rect = Rectangle(1, -2)
+
     def test_val_3(self):
         """ pass invalid y value """
         with self.assertRaises(ValueError):
@@ -253,3 +263,12 @@ class TestRectangleMethod(unittest.TestCase):
         list_out = Rectangle.load_from_file()
         for i in range(len(list_rect)):
             self.assertEqual(list_rect[i].__str__(), list_out[i].__str__())
+
+    def test_load_from_file_2(self):
+        """ test load file """
+        
+        linput = []
+        Rectangle.save_to_file(linput)
+        list_out = Rectangle.load_from_file()
+        for i in range(len(linput)):
+            self.assertEqual(linput[i].__str__(), list_out[i].__str__())
