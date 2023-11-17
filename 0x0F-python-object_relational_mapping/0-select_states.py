@@ -1,9 +1,7 @@
 #!/usr/bin/python3
-
+""" This is s scrip for listing all states from a database """
 import MySQLdb
 import sys
-
-""" This is s scrip for listing all states from a database """
 
 if __name__ == '__main__':
     db = MySQLdb.connect(port=3306, user=sys.argv[1],
