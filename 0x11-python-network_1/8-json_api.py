@@ -10,7 +10,7 @@ if __name__ == '__main__':
     data = {'q': ""}
     try:
         data['q'] = sys.argv[1]
-    except:
+    except Exception:
         pass
     r = requests.post('http://0.0.0.0:5000/search_user', data)
     try:
@@ -19,5 +19,5 @@ if __name__ == '__main__':
             print('No result')
         else:
             print('[{}] {}'.format(json_o.get('id'), json_o.get('name')))
-    except:
+    except Exception:
         print("Not a valid JSON")
