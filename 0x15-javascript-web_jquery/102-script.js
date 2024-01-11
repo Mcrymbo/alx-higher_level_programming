@@ -1,9 +1,10 @@
-$('document').ready(function() {
-	const url = 'https://www.fourtonfish.com/hellosalut/hello/;
-	const lan = $('INPUT#language_code').val();
-	$('INPUT#btn_translate').on('click', function () {
-		$.get(url, { lang: lan }, function (data) {
-			$('DIV#hello').text(data.hello);
-		});
-	});
-})
+const $ = window.$;
+$(document).ready(function () {
+  const url = 'https://www.fourtonfish.com/hellosalut/hello/';
+  $('input#btn_translate').on('click', function () {
+    const lan = $('input#language_code').val();
+    $.get(url, { lang: lan }, function (data) {
+      $('div#hello').text(data.hello);
+    });
+  });
+});
